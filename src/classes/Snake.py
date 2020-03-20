@@ -3,18 +3,30 @@ import turtle
 class Snake():
     # Class attributes
     head = turtle.Turtle()
+    body = []
 
     def __init__(self):
-        self.SetHead()
+        self.SetHeadProperties()
 
-    def SetHead(self):
+    def SetHeadProperties(self):
         self.head.speed(0)
         self.head.shape("square")
         self.head.color("black")
         self.head.penup()
         self.head.goto(0,0)
         self.head.direction = "stop"
+
+        self.Grow()
+
         print("Snake initialization\t\t:\tSUCCESS")
+
+    def Grow(self):
+        new_block = turtle.Turtle()
+        new_block.speed(0)
+        new_block.shape("square")
+        new_block.color("black")
+        new_block.penup()
+        self.body.append(new_block)
 
     def Move(self):
         if self.head.direction == "up":
@@ -31,13 +43,20 @@ class Snake():
             self.head.setx(x + 20)
 
     def SetDirectionUp(self):
-        self.head.direction = "up"
+        if self.head.direction != "down":
+            self.head.direction = "up"
     
     def SetDirectionDown(self):
-        self.head.direction = "down"
+        if self.head.direction != "up":
+            self.head.direction = "down"
 
     def SetDirectionLeft(self):
-        self.head.direction = "left"
+        if self.head.direction != "right":
+            self.head.direction = "left"
 
     def SetDirectionRight(self):
-        self.head.direction = "right"
+        if self.head.direction != "left":
+            self.head.direction = "right"
+
+    def PrintSnakePos(self):
+        print("X : ", self.head.xcor(), "\tY : ", self.head.ycor())
