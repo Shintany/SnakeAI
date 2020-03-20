@@ -15,10 +15,7 @@ class Snake():
         self.head.penup()
         self.head.goto(0,0)
         self.head.direction = "stop"
-
-        self.Grow()
-
-        print("Snake initialization\t\t:\tSUCCESS")
+        # print("Snake initialization\t\t:\tSUCCESS")
 
     def Grow(self):
         new_block = turtle.Turtle()
@@ -42,21 +39,41 @@ class Snake():
             x = self.head.xcor()
             self.head.setx(x + 20)
 
+    def Reset(self):
+        self.head.direction = "stop"
+        for body_part in self.body:
+            # Hide body parts
+            body_part.hideturtle()
+        self.body.clear()
+        self.head.goto(0, 0)
+
     def SetDirectionUp(self):
-        if self.head.direction != "down":
+        if len(self.body) == 0:
             self.head.direction = "up"
-    
+        else:
+            if self.head.direction != "down":
+                self.head.direction = "up"
+            
     def SetDirectionDown(self):
-        if self.head.direction != "up":
+        if len(self.body) == 0:
             self.head.direction = "down"
-
+        else:
+            if self.head.direction != "up":
+                self.head.direction = "down"
+    
     def SetDirectionLeft(self):
-        if self.head.direction != "right":
+        if len(self.body) == 0:
             self.head.direction = "left"
-
+        else:
+            if self.head.direction != "right":
+                self.head.direction = "left"
+    
     def SetDirectionRight(self):
-        if self.head.direction != "left":
+        if len(self.body) == 0:
             self.head.direction = "right"
-
+        else:
+            if self.head.direction != "left":
+                self.head.direction = "right"
+    
     def PrintSnakePos(self):
         print("X : ", self.head.xcor(), "\tY : ", self.head.ycor())

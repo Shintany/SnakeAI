@@ -20,7 +20,7 @@ class Food():
         self.food.color("red")
         self.food.penup()
         self.SetRandomPosition()
-        print("Food initialization\t\t:\tSUCCESS")
+        # print("Food initialization\t\t:\tSUCCESS")
 
     def SetFoodPosArray(self):
         x_range = range(self.x_lb, self.x_hb)
